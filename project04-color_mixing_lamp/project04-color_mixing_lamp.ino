@@ -1,9 +1,9 @@
-// numerator for scaling down output voltage
-const int outputScalar = 10;
+// scales input (range 0-1023) to output (range 0 255)
+const int outputScalar = 4;
 
-// digital pin outputs
-const int blueLEDPin = 9;
-const int greenLEDPin = 10;
+// digital pin outputs with pulse width modulation
+const int greenLEDPin = 9;
+const int blueLEDPin = 10;
 const int redLEDPin = 11;
 
 // analog pin inputs
@@ -42,6 +42,7 @@ void loop() {
   redValue = redSensorValue / outputScalar;
   blueValue = blueSensorValue / outputScalar;
 
+  // analog write through digital pins with pulse width modulation
   analogWrite(greenLEDPin, greenValue);
   analogWrite(redLEDPin, redValue);
   analogWrite(blueLEDPin, blueValue);
